@@ -6,51 +6,77 @@
 
 
 using Demo2;
+using System.Text;
 
 void WriteLog(string message) { }
 
 
-try
+void LlamarOperaciones()
 {
-    Operaciones operaciones = new Operaciones();
+    Operaciones operacion = null;
+    StringBuilder stringBuilder = null;//Ejemplo para usar el finally
 
-    Console.Write("Ingresa Valor1 ");
-    int valor1 = int.Parse(Console.ReadLine());
+    try
+    {
+        stringBuilder = new StringBuilder();
+        operacion = new Operaciones();
+        
 
-    Console.Write("Ingresa Valor2 ");
-    int valor2 = int.Parse(Console.ReadLine());
+        Console.Write("Ingresa Valor1 ");
+        int valor1 = int.Parse(Console.ReadLine());
 
-    operaciones.AsignarValores(valor1, valor2);
+        Console.Write("Ingresa Valor2 ");
+        int valor2 = int.Parse(Console.ReadLine());
+
+        operacion.AsignarValores(valor1, valor2);
+
+        Console.WriteLine("La Suma es:");
+        Console.WriteLine(operacion.Sumar());
+
+        Console.WriteLine("La Resta es:");
+        Console.WriteLine(operacion.Restar());
+
+        Console.WriteLine("La Division es:");
+        Console.WriteLine(operacion.Dividir());
+     
+    }
+    catch (FormatException ex)
+    {
+        Console.WriteLine("Error: El valor ingresado no es un número válido.");
+        WriteLog(ex.Message);
+   
+    }
+    catch (DivideByZeroException ex)
+    {
+        Console.WriteLine("Error: La división entre cero no es posible.");
+        WriteLog(ex.Message);
+      
+    }
+    catch (InvalidRestarExcepcion ex)
+    {
+        Console.WriteLine(ex.Message);
+        WriteLog(ex.Message);
     
-    Console.WriteLine("La Suma es:");
-    Console.WriteLine(operaciones.Sumar());
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine("Error, por favor contactarse con el administrador");
+        WriteLog(ex.Message);    
+    }
+    finally
+    {
+        //Limpias los objetos de memoria
+        //Cierras las cadenas de conexión
+        //Cierras las llamadas a las API
+        //Cierras la lectura de archivos
 
-    Console.WriteLine("La Resta es:");
-    Console.WriteLine(operaciones.Restar());
-
-    Console.WriteLine("La Division es:");
-    Console.WriteLine(operaciones.Dividir());
-
-}
-catch (FormatException ex)
-{
-    Console.WriteLine("Error: El valor ingresado no es un número válido.");
-    WriteLog(ex.Message);
-}
-catch (DivideByZeroException ex)
-{
-    Console.WriteLine("Error: La división entre cero no es posible.");
-    WriteLog(ex.Message);
-}
-catch (InvalidRestarExcepcion ex)
-{
-    Console.WriteLine(ex.Message);
-    WriteLog(ex.Message);
-}
-catch (Exception ex)
-{
-    Console.WriteLine("Error, por favor contactarse con el administrador");
-    WriteLog(ex.Message);
+        operacion = null;
+        stringBuilder = null;
+       
+    }
 }
 
 
+
+
+LlamarOperaciones();

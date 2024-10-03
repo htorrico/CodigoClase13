@@ -139,7 +139,7 @@ void Personalizado()
 
         if (edad < 0 || edad > 120)
         {
-        throw new InvalidAgeException("La edad ingresada no es válida. Debe estar entre 0 y 120.");
+        throw new InvalidAgeException("La edad ingresada no es válida. Debe estar entre 0 y 120.");       
         }
 
         Console.WriteLine($"Tu edad es: {edad}");
@@ -160,13 +160,58 @@ void Personalizado()
     }
 
 }
+void PersonalizadoNotas()
+{
+    try
+    {
+        Console.Write("Ingresa tu nota: ");
+        int nota = int.Parse(Console.ReadLine());
+        if (nota < 0 || nota > 20)
+        {
+            throw new InvalidNoteExcepcion();
+        }
+        Console.WriteLine($"Tu edad es: {nota}");
+    }
+    catch (InvalidNoteExcepcion ex)
+    {
+        Console.WriteLine($"error: {ex.Message}");
+    }
+    catch (FormatException ex)
+    {
+        Console.WriteLine("Error: El valor ingresado no es un número válido.");
+        WriteLog(ex.Message);
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine("Error, por favor contactarse con el administrador");
+        WriteLog(ex.Message);
+    }
+
+}
+
+void PersonalizadoCompleto()
+{
+    try
+    {
+        throw new InvalidAgeException("La edad ingresada no es válida. Debe estar entre 0 y 120.");
+        throw new InvalidNoteExcepcion();
+    }
+    catch (Exception)
+    {
+
+        throw;
+    }
+}
 
 
+
+
+//PersonalizadoNotas();
 //DividirSinValidacion("10", "abc");
 //Dividir3("10", "0");
 //Dividir3("10", "ABC");
 //ValidarArreglo();
-Personalizado();
+//Personalizado();
 
 
 

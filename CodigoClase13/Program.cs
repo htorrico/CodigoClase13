@@ -123,11 +123,6 @@ void ValidarArreglo()
         WriteLog(ex.Message);
         Console.WriteLine("Error: Debes comunicarte con el administrador");
     }
-
-
-
-
-
 }
 
 void Personalizado()
@@ -188,7 +183,6 @@ void PersonalizadoNotas()
     }
 
 }
-
 void PersonalizadoCompleto()
 {
     try

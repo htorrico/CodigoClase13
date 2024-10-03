@@ -4,9 +4,8 @@
         resultado = int.Parse(valor1) / int.Parse(valor2);
         Console.WriteLine(resultado);
 
+    
 }
-
-
 
 
 void Dividir(string valor1, string valor2)
@@ -47,8 +46,7 @@ void MostrarDatoArreglo()
 }
 
 
-void WriteLog(string messsage)
-{
+void WriteLog(string messsage){
     //
 }
 void Dividir2(string valor1, string valor2)
@@ -81,7 +79,6 @@ void Dividir3(string valor1, string valor2)
         resultado = int.Parse(valor1) / int.Parse(valor2);
         Console.WriteLine(resultado);
     }
-
     catch (DivideByZeroException ex)
     {
 
@@ -99,14 +96,52 @@ void Dividir3(string valor1, string valor2)
         Console.WriteLine("Error, por favor contactarse con el administrador");
         WriteLog(ex.Message);
     }
-  
+
 
 }
 
 
-//DividirSinValidacion("10", "abc");
-Dividir3("10", "0");
-Dividir3("10", "ABC");
+void ValidarArreglo()
+{
+
+    //Una declaración no va generar expceción
+    int[] numeros = { 10, 20, 30, 40, 50 };
 
 
+
+    Console.Write("Ingresa un índice (0-4): ");
+    try
+    {             
+        //Una conversión, si es posible que genere una excepción
+        int indice = int.Parse(Console.ReadLine());
+        Console.WriteLine(numeros[indice]);    
+    }
+    
+    catch (IndexOutOfRangeException ex)
+    {
+        WriteLog(ex.Message);
+        Console.WriteLine("Error: El índice ingresado está fuera del rango permitido (0-4).");
+    }
+    catch (FormatException ex )
+    {
+        WriteLog(ex.Message);
+        Console.WriteLine("Error: Debes ingresar un número.");
+    }
+    catch (Exception ex)
+    {
+        WriteLog(ex.Message);
+        Console.WriteLine("Error: Debes comunicarte con el administrador");
+    }
+
+
+
+
+
+}
+
+DividirSinValidacion("10", "abc");
+//Dividir3("10", "0");
+//Dividir3("10", "ABC");
+
+ValidarArreglo();
 Console.Read();

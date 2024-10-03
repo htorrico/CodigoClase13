@@ -1,13 +1,11 @@
-﻿void DividirSinValidacion(string valor1, string valor2)
+﻿using CodigoClase13;
+
+void DividirSinValidacion(string valor1, string valor2)
 {
        double resultado;
         resultado = int.Parse(valor1) / int.Parse(valor2);
-        Console.WriteLine(resultado);
-
-    
+        Console.WriteLine(resultado);    
 }
-
-
 void Dividir(string valor1, string valor2)
 {
     
@@ -25,8 +23,6 @@ void Dividir(string valor1, string valor2)
     }
 
 }
-
-
 void MostrarDatoArreglo()
 {
     int[] array = { 1, 2, 3 };
@@ -44,8 +40,6 @@ void MostrarDatoArreglo()
     }
 
 }
-
-
 void WriteLog(string messsage){
     //
 }
@@ -68,7 +62,6 @@ void Dividir2(string valor1, string valor2)
     }
 
 }
-
 void Dividir3(string valor1, string valor2)
 {
 
@@ -99,8 +92,6 @@ void Dividir3(string valor1, string valor2)
 
 
 }
-
-
 void ValidarArreglo()
 {
 
@@ -139,9 +130,45 @@ void ValidarArreglo()
 
 }
 
-DividirSinValidacion("10", "abc");
+void Personalizado()
+{
+    try
+    {
+        Console.Write("Ingresa tu edad: ");
+        int edad = int.Parse(Console.ReadLine());
+
+        if (edad < 0 || edad > 120)
+        {
+        throw new InvalidAgeException("La edad ingresada no es válida. Debe estar entre 0 y 120.");
+        }
+
+        Console.WriteLine($"Tu edad es: {edad}");
+    }
+    catch (InvalidAgeException ex)
+    {
+        Console.WriteLine($"error: {ex.Message}");
+    }
+    catch (FormatException ex)
+    {
+        Console.WriteLine("Error: El valor ingresado no es un número válido.");
+        WriteLog(ex.Message);
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine("Error, por favor contactarse con el administrador");
+        WriteLog(ex.Message);
+    }
+
+}
+
+
+//DividirSinValidacion("10", "abc");
 //Dividir3("10", "0");
 //Dividir3("10", "ABC");
+//ValidarArreglo();
+Personalizado();
 
-ValidarArreglo();
+
+
+
 Console.Read();
